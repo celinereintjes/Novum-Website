@@ -277,7 +277,6 @@
     const tags = p => String(pick(p, 'interests')).split(',').map(t => t.trim()).filter(Boolean).map(t => t[0].toUpperCase() + t.slice(1));
     const cards = $('#people').classList.contains('people-cards');  // the home page shows a compact row without details
     const profile = p => cards && (facts(p) || pick(p, 'why_novum') || tags(p).length ? `<div class="profile">
-        <p class="hi">Hi, I'm ${esc(p.name.split(' ')[0])}</p>
         ${facts(p) ? `<dl class="facts">${facts(p)}</dl>` : ''}
         ${pick(p, 'why_novum') ? `<blockquote class="why"><span>Why I joined NovUM</span>${esc(pick(p, 'why_novum'))}</blockquote>` : ''}
         ${tags(p).length ? `<div class="interests"><span>Interests</span><ul class="tags">${tags(p).map(t => `<li>${esc(t)}</li>`).join('')}</ul></div>` : ''}

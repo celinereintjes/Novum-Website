@@ -895,7 +895,6 @@ body[data-page="board"] .section-blush { background:
 .people-cards .person:nth-child(even) { --accent: var(--pink); --accent-ink: #8e2442; --accent-soft: #fbe4ea; --panel: #fff4f6; }
 .section-blush .people-cards .person .role, .people-cards .person .role { color: var(--accent-ink); }
 .people-cards .profile { background: radial-gradient(80% 50% at 100% 0%, rgba(255, 255, 255, .55), transparent 70%), var(--accent-soft); }
-.profile .hi { margin: 0; font-size: 1.35rem; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; color: var(--accent-ink); }
 .people-cards .profile .facts dt { color: var(--accent-ink); opacity: .7; }
 .people-cards .facts dd { color: var(--accent-ink); }
 .people-cards .why { border-left-color: var(--accent); }
