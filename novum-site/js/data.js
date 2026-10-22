@@ -1,0 +1,68 @@
+// Built-in content. The site shows this when Supabase is not configured yet (js/config.js),
+// and supabase/seed.sql is generated from it (python3 tools/make_seed.py).
+window.NOVUM_DEMO = {
+  councils: [
+    { id: 'uc', name: 'University Council', short_name: 'University', sort: 0 },
+    { id: 'fasos', name: 'Faculty of Arts and Social Sciences', short_name: 'FASoS', sort: 1 },
+    { id: 'fhml', name: 'Faculty of Health, Medicine and Life Sciences', short_name: 'FHML', sort: 2 },
+    { id: 'law', name: 'Faculty of Law', short_name: 'Law', sort: 3 },
+    { id: 'fpn', name: 'Faculty of Psychology and Neuroscience', short_name: 'FPN', sort: 4 },
+    { id: 'sbe', name: 'School of Business and Economics', short_name: 'SBE', sort: 5 },
+    { id: 'fse', name: 'Faculty of Science and Engineering', short_name: 'FSE', sort: 6 }
+  ],
+  pillars: [
+    { id: 'p-edu', image_url: 'img/pillars/education.jpg', title: 'Education', sort: 1, summary: 'Teaching that works for students: fair and clear rules on AI and exams, study materials you can afford, and the support you need to learn well.' },
+    { id: 'p-int', image_url: 'img/pillars/internationalism.jpg', title: 'Internationalism', sort: 2, summary: 'Keeping UM a university for students from everywhere: teaching in English, good translation and language help, and a place for Dutch and international students side by side.' },
+    { id: 'p-wel', image_url: 'img/pillars/wellbeing.jpg', title: 'Wellbeing', sort: 3, summary: 'A campus where everyone feels safe and supported, with attention for mental health, sexual safety, and students with visible or invisible disabilities.' },
+    { id: 'p-hou', image_url: 'img/pillars/housing.jpg', title: 'Housing', sort: 4, summary: 'A safe, affordable room for every student: quick fixes for the September rush, decent living conditions, and long-term plans together with the municipality.' },
+    { id: 'p-sus', image_url: 'img/pillars/sustainability.jpg', title: 'Sustainability', sort: 5, summary: 'A university that takes the climate seriously: reaching carbon neutrality, greener day-to-day operations, and honest choices about who UM works with and invests in.' }
+  ],
+  achievements: [
+    { pillar_id: 'p-edu', council_id: 'uc', title: 'AI policy in education', description: 'Gave input on UM’s rules for generative AI in teaching and exams, aiming for rules that are clear and workable for students.' },
+    { pillar_id: 'p-edu', council_id: 'uc', title: 'Cheaper study materials', description: 'Pushed faculties to make books and readers cheaper and easier to get.' },
+    { pillar_id: 'p-edu', council_id: 'fse', title: 'Better STEM teaching', description: 'Raised the quality of teaching in science and engineering programmes in the FSE council.' },
+    { pillar_id: 'p-int', council_id: 'uc', title: 'English-speaking education', description: 'Keeps standing up for English-taught programmes at UM.' },
+    { pillar_id: 'p-int', council_id: 'uc', title: 'Human rights in partnerships', description: 'Voted for a framework that checks UM’s international partners on human rights.' },
+    { pillar_id: 'p-int', council_id: 'fhml', title: 'Translation in the FHML council', description: 'Asked for better translation in FHML council meetings, so every student can follow and take part.' },
+    { pillar_id: 'p-int', council_id: 'uc', title: 'Dutch lessons, international UM', description: 'Asked for more ways to learn Dutch, and for UM to stay international if it merges parts of its administration with MUMC+.' },
+    { pillar_id: 'p-wel', council_id: 'uc', title: '€16,000 more for social safety', description: 'Secured an extra €16,000 in the budget for social safety.' },
+    { pillar_id: 'p-wel', council_id: 'uc', title: 'Social safety working group', description: 'Started a working group that looks at how safe students are within fraternities and student associations.' },
+    { pillar_id: 'p-wel', council_id: null, title: 'Sexual safety training', description: 'Teamed up with Green Dot so members and councillors can follow training on sexual safety.' },
+    { pillar_id: 'p-wel', council_id: 'uc', title: 'Disability policy', description: 'Helped shape UM’s disability policy for students and staff, from exam arrangements to support for invisible disabilities.' },
+    { pillar_id: 'p-hou', council_id: null, title: 'Short-term housing', description: 'Looked for temporary places to live for students arriving at the start of the year without a room.' },
+    { pillar_id: 'p-hou', council_id: null, title: 'A student housing corporation', description: 'Made the case for a dedicated student housing corporation in Maastricht and Heerlen.' },
+    { pillar_id: 'p-hou', council_id: null, title: 'With the municipality', description: 'Teamed up with members of the municipal council on safer streets, better living conditions and the housing shortage.' },
+    { pillar_id: 'p-hou', council_id: 'uc', title: 'Campus life in Randwyck', description: 'Pushed to turn Randwyck into a real campus with its own student life.' },
+    { pillar_id: 'p-sus', council_id: 'uc', title: 'Carbon neutral by 2030', description: 'Supported UM’s goal to be carbon neutral by 2030, with €26 million set aside for it over ten years.' },
+    { pillar_id: 'p-sus', council_id: 'uc', title: 'Fossil-free research', description: 'Gave input on the rules that end research collaborations between UM and fossil-fuel companies, including their subsidiaries.' },
+    { pillar_id: 'p-sus', council_id: 'uc', title: 'Better, cheaper catering', description: 'Pushed for a switch to a new caterer for better and cheaper food on campus.' }
+  ],
+  people: [
+    { kind: 'board', name: 'Laurenz Schmidt', role: 'President', photo_url: 'img/board/laurenzschmitt.jpg', sort: 1, bio: 'Leads the board’s strategic direction and represents NovUM across campus.' },
+    { kind: 'board', name: 'Ernest Fleurot', role: 'Vice-President & Treasurer', photo_url: 'img/board/ernestfleurot.jpg', sort: 2, bio: 'Looks after the budget, responsible spending and campaign planning.' },
+    { kind: 'board', name: 'Chrysi Dimoragka', role: 'Vice-President & Head of Events', photo_url: 'img/board/chrysidimoragka.jpg', sort: 3, bio: 'Organises events and coordinates the teams.' },
+    { kind: 'board', name: 'Max Thompson', role: 'General Secretary', photo_url: 'img/board/maxthompson.jpg', sort: 4, bio: 'Runs internal operations, planning and communication between teams.' },
+    { kind: 'board', name: 'Céline Reintjes', role: 'Head of Public Relations', photo_url: 'img/board/celinereintjes.jpg', sort: 5, bio: 'Shapes messaging, campaign content and member communications.' },
+    { kind: 'board', name: 'Maialan Iglesias-Alfageme', role: 'Political Officer', photo_url: 'img/board/maialaniglesiasalfageme.jpg', sort: 6, bio: 'Coordinates outreach and partnerships with societies and councils.' },
+    { kind: 'councillor', name: 'Héloïse Henrard', role: 'Councillor', council_id: 'fasos', sort: 1 },
+    { kind: 'councillor', name: 'Judith Michel', role: 'Councillor', council_id: 'fasos', sort: 2 },
+    { kind: 'councillor', name: 'Rieke Eschen', role: 'Councillor', council_id: 'fasos', sort: 3 },
+    { kind: 'councillor', name: 'Angela Chong', role: 'Councillor', council_id: 'fhml', sort: 4 },
+    { kind: 'councillor', name: 'Lia Soraya Wallraff', role: 'Councillor', council_id: 'fhml', sort: 5 },
+    { kind: 'councillor', name: 'Eliante Martha', role: 'Councillor', council_id: 'fpn', sort: 6 },
+    { kind: 'councillor', name: 'Sofi Tirana', role: 'Councillor', council_id: 'fpn', sort: 7 },
+    { kind: 'councillor', name: 'Claudia Magis', role: 'Councillor', council_id: 'fse', sort: 8 },
+    { kind: 'councillor', name: 'Maryam Hammam', role: 'Councillor', council_id: 'fse', sort: 9 },
+    { kind: 'councillor', name: 'Sophie Groll', role: 'Councillor', council_id: 'fse', sort: 10 },
+    { kind: 'councillor', name: 'Tijn van Heesewijk', role: 'Councillor', council_id: 'fse', sort: 11 },
+    { kind: 'councillor', name: 'Efe Satici', role: 'Councillor', council_id: 'law', sort: 12 },
+    { kind: 'councillor', name: 'Olivia Nixon', role: 'Councillor', council_id: 'law', sort: 13 },
+    { kind: 'councillor', name: 'Réka Nagy', role: 'Councillor', council_id: 'law', sort: 14 },
+    { kind: 'councillor', name: 'Ahmet Eskici', role: 'Councillor', council_id: 'sbe', sort: 15 },
+    { kind: 'councillor', name: 'Laurenz Schmidt', role: 'Councillor', council_id: 'sbe', sort: 16 },
+    { kind: 'councillor', name: 'Ophélie Mazé', role: 'Councillor', council_id: 'sbe', sort: 17 },
+    { kind: 'councillor', name: 'Matthieu Marienbach', role: 'Councillor', council_id: 'uc', sort: 18 },
+    { kind: 'councillor', name: 'Rocío Megías Pellejero', role: 'Councillor', council_id: 'uc', sort: 19 },
+    { kind: 'councillor', name: 'Roos Goorman', role: 'Councillor', council_id: 'uc', sort: 20 }
+  ]
+};

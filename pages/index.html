@@ -1,0 +1,103 @@
+title: NovUM Maastricht · The biggest student party at Maastricht University
+description: NovUM is the biggest student party at Maastricht University, founded in 2003 and represented in all six faculty councils and the University Council. 
+
+  <section class="hero" aria-labelledby="hero-title">
+    <img class="hero-bg" src="img/tapijn.jpg" alt="" width="1920" height="1370" fetchpriority="high">
+    <svg class="hero-bridge" viewBox="0 0 1200 400" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path class="arch" d="M-20 380 Q600 -60 1220 380"/>
+      <path class="deck" d="M60 330 H1140"/>
+      <g class="cables"><path d="M200 330 L240 214"/><path d="M320 330 L345 150"/><path d="M440 330 L455 112"/><path d="M560 330 L565 96"/><path d="M640 330 L635 96"/><path d="M760 330 L745 112"/><path d="M880 330 L855 150"/><path d="M1000 330 L960 214"/></g>
+    </svg>
+    <div class="wrap hero-inner">
+      <h1 id="hero-title" class="rise">Your <mark class="hl">student voice</mark> at Maastricht University</h1>
+      <p class="hero-sub rise">Since 2003, NovUM has turned what students experience into real change at the university and in Maastricht. We are the biggest student party at UM, with councillors on all seven councils.</p>
+      <div class="actions rise">
+        <a class="btn btn-big btn-light" href="join.html">Become a member</a>
+        <a class="btn btn-big btn-ghost" href="councils.html#finder">Who represents me?</a>
+      </div>
+    </div>
+    <p class="hero-credit wrap">Tapijn, Maastricht University · Photo: <a href="https://commons.wikimedia.org/wiki/File:2021_Maastricht,_Tapijnterrein_(1).jpg" target="_blank" rel="noopener">Kleon3</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a></p>
+  </section>
+
+  <section class="stats" aria-label="NovUM in numbers">
+    <div class="wrap stats-grid">
+      <div class="stat"><b>2003</b><span>Founded to represent international students</span></div>
+      <div class="stat"><b>7 of 7</b><span>UM councils with NovUM councillors</span></div>
+      <div class="stat"><b>€26 million</b><span>for a carbon-neutral UM by 2030, a target we helped secure</span></div>
+      <div class="stat"><b>€16,000</b><span>extra for social safety at UM</span></div>
+    </div>
+  </section>
+
+  <section class="poll" id="poll" aria-labelledby="poll-title">
+    <div class="wrap poll-grid">
+      <div class="poll-intro">
+        <p class="eyebrow-tag reveal">Live student poll</p>
+        <h2 id="poll-title" class="reveal">What should NovUM <mark class="hl hl-pink">fight for</mark> next?</h2>
+        <p class="reveal">Tell our councillors what matters most to you this year. It's anonymous and takes five seconds, and the results show up straight away.</p>
+        <p class="poll-total reveal" id="pollTotal" aria-live="polite"></p>
+      </div>
+      <div class="poll-card reveal">
+        <form id="pollForm" method="post" novalidate>
+          <fieldset>
+            <legend>The issue that matters most to me</legend>
+            <div class="poll-options" id="pollOptions"></div>
+          </fieldset>
+          <div class="poll-detail">
+            <label for="pollDetail" id="pollDetailLabel">What exactly should we fight for? <span class="opt">(optional)</span></label>
+            <textarea id="pollDetail" name="detail" rows="2" maxlength="280" placeholder="For example: more affordable rooms for first-years"></textarea>
+            <p class="poll-hint">Only the NovUM board reads this. It is never shown on the website.</p>
+          </div>
+          <div class="poll-bottom">
+            <label class="poll-fac"><span>My faculty <span class="opt">(optional)</span></span>
+              <select name="faculty" id="pollFaculty"><option value="">Prefer not to say</option></select></label>
+            <button class="btn btn-big" type="submit">Cast my vote</button>
+          </div>
+          <p class="form-msg" id="pollMsg" role="status"></p>
+          <button class="poll-peek" type="button" id="pollPeek">Just show me the results</button>
+        </form>
+        <div class="poll-results" id="pollResults" hidden></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="represent" aria-labelledby="represent-title">
+    <div class="wrap represent-grid">
+      <div class="represent-text">
+        <h2 id="represent-title" class="reveal">Who represents me?</h2>
+        <p class="reveal">NovUM has councillors on the University Council and on all six faculty councils. Pick your faculty to meet yours.</p>
+      </div>
+      <nav class="represent-choices reveal" aria-label="Find your councillors by faculty">
+        <a href="councils.html?faculty=fasos#finder">FASoS</a>
+        <a href="councils.html?faculty=fhml#finder">FHML</a>
+        <a href="councils.html?faculty=law#finder">Law</a>
+        <a href="councils.html?faculty=fpn#finder">FPN</a>
+        <a href="councils.html?faculty=sbe#finder">SBE</a>
+        <a href="councils.html?faculty=fse#finder">FSE</a>
+        <a class="all" href="councils.html">All councils →</a>
+      </nav>
+      <div class="fix-teaser reveal">
+        <div class="fix-teaser-text">
+          <p class="eyebrow-tag">Problem navigator</p>
+          <h3>Got a problem? <mark class="hl">Who can fix this?</mark></h3>
+          <p>Pick what's going on and see who to go to, step by step, and how your NovUM councillors can help.</p>
+        </div>
+        <nav class="fix-teaser-links" aria-label="Common problems">
+          <a href="councils.html?problem=grade#fixit">A grade or exam that seems unfair</a>
+          <a href="councils.html?problem=housing#fixit">A housing problem or difficult landlord</a>
+          <a href="councils.html?problem=wellbeing#fixit">Stress or falling behind</a>
+          <a class="all" href="councils.html#fixit">See all problems →</a>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-blush" aria-labelledby="board-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="board-title" class="reveal">Meet the board</h2>
+        <a class="textlink reveal" href="board.html">More about our board members</a>
+      </div>
+      <ul class="people people-row" id="people"></ul>
+      <!--BOARD_CREDIT-->
+    </div>
+  </section>

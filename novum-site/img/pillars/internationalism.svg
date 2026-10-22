@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" role="img" aria-label="A globe with two speech bubbles saying hi and hoi">
+  <rect width="320" height="240" fill="#f7d9e0"/>
+  <!-- globe -->
+  <circle cx="150" cy="130" r="78" fill="#74c043"/>
+  <path d="M110 80 C126 92 120 108 104 112 C92 116 86 128 92 142 C98 156 84 166 76 158 C72 140 78 104 110 80 Z" fill="#2d6a3e"/>
+  <path d="M170 64 C186 76 206 72 212 88 C218 104 200 112 192 126 C184 140 196 156 190 174 C182 190 160 196 154 182 C148 166 160 152 152 138 C144 124 154 108 168 104 C180 100 168 86 160 78 Z" fill="#2d6a3e"/>
+  <circle cx="150" cy="130" r="78" fill="none" stroke="#1f2a1f" stroke-width="5"/>
+  <ellipse cx="150" cy="130" rx="34" ry="78" fill="none" stroke="#1f2a1f" stroke-width="3" opacity=".35"/>
+  <path d="M74 130 H226" stroke="#1f2a1f" stroke-width="3" opacity=".35"/>
+  <!-- stand -->
+  <path d="M150 208 L150 222" stroke="#1f2a1f" stroke-width="6" stroke-linecap="round"/>
+  <rect x="118" y="220" width="64" height="10" rx="5" fill="#1f2a1f"/>
+  <!-- speech bubbles -->
+  <path d="M206 28 H282 A12 12 0 0 1 294 40 V72 A12 12 0 0 1 282 84 H236 L220 98 L222 84 H206 A12 12 0 0 1 194 72 V40 A12 12 0 0 1 206 28 Z" fill="#fffdf8" stroke="#1f2a1f" stroke-width="4" stroke-linejoin="round"/>
+  <text x="244" y="66" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-weight="800" font-size="28" fill="#c93a5e">Hoi!</text>
+  <path d="M30 34 H86 A12 12 0 0 1 98 46 V74 A12 12 0 0 1 86 86 H72 L76 100 L58 86 H30 A12 12 0 0 1 18 74 V46 A12 12 0 0 1 30 34 Z" fill="#fffdf8" stroke="#1f2a1f" stroke-width="4" stroke-linejoin="round"/>
+  <text x="58" y="70" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-weight="800" font-size="28" fill="#2d6a3e">Hi!</text>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" role="img" aria-label="Two hands holding a heart, next to a plant and a cup of tea">
+  <rect width="320" height="240" fill="#dfefd2"/>
+  <!-- heart -->
+  <path d="M160 168 C118 140 92 118 92 90 C92 68 108 54 128 54 C142 54 154 62 160 74 C166 62 178 54 192 54 C212 54 228 68 228 90 C228 118 202 140 160 168 Z" fill="#c93a5e"/>
+  <path d="M120 78 C112 82 108 90 110 98" stroke="#f7d9e0" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <!-- hands -->
+  <path d="M62 196 C70 168 92 150 116 150 L150 156 C160 158 162 172 150 174 L126 174" fill="#e9c9a8" stroke="#1f2a1f" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M258 196 C250 168 228 150 204 150 L170 156 C160 158 158 172 170 174 L194 174" fill="#b7835c" stroke="#1f2a1f" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+  <rect x="40" y="194" width="66" height="30" rx="10" fill="#2d6a3e"/>
+  <rect x="214" y="194" width="66" height="30" rx="10" fill="#74c043"/>
+  <!-- plant -->
+  <path d="M34 120 C34 100 46 88 58 84 C58 102 50 114 34 120 Z" fill="#74c043"/>
+  <path d="M40 132 C28 120 18 116 10 118 C14 132 26 138 40 132 Z" fill="#2d6a3e"/>
+  <path d="M40 150 L40 120" stroke="#2d6a3e" stroke-width="4" stroke-linecap="round"/>
+  <path d="M24 148 H56 L52 172 H28 Z" fill="#c93a5e"/>
+  <!-- tea -->
+  <path d="M268 112 C268 98 274 92 280 88 M286 112 C286 100 292 94 296 90" stroke="#2d6a3e" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <path d="M256 120 H304 V146 C304 160 294 168 280 168 C266 168 256 160 256 146 Z" fill="#fffdf8" stroke="#1f2a1f" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M304 128 C316 128 316 146 304 146" stroke="#1f2a1f" stroke-width="4" fill="none"/>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" role="img" aria-label="An open book with a graduation cap above it">
+  <rect width="320" height="240" fill="#dfefd2"/>
+  <circle cx="250" cy="58" r="30" fill="#f7d9e0"/>
+  <!-- stack of books -->
+  <rect x="44" y="176" width="232" height="22" rx="6" fill="#2d6a3e"/>
+  <rect x="56" y="156" width="208" height="22" rx="6" fill="#c93a5e"/>
+  <rect x="64" y="160" width="192" height="4" rx="2" fill="#f7d9e0"/>
+  <rect x="52" y="180" width="216" height="4" rx="2" fill="#74c043"/>
+  <!-- open book -->
+  <path d="M160 150 C130 132 98 130 70 136 L70 78 C98 72 130 74 160 92 Z" fill="#fffdf8" stroke="#2d6a3e" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M160 150 C190 132 222 130 250 136 L250 78 C222 72 190 74 160 92 Z" fill="#fffdf8" stroke="#2d6a3e" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M160 92 L160 150" stroke="#2d6a3e" stroke-width="5" stroke-linecap="round"/>
+  <g stroke="#74c043" stroke-width="5" stroke-linecap="round">
+    <path d="M86 96 C102 93 118 94 138 102"/><path d="M86 112 C102 109 118 110 138 118"/><path d="M86 128 C102 125 118 126 132 131"/>
+    <path d="M182 102 C202 94 218 93 234 96"/><path d="M182 118 C202 110 218 109 234 112"/>
+  </g>
+  <!-- graduation cap -->
+  <path d="M160 26 L214 46 L160 66 L106 46 Z" fill="#1f2a1f"/>
+  <path d="M128 54 L128 72 C140 82 180 82 192 72 L192 54 L160 66 Z" fill="#2d6a3e"/>
+  <path d="M206 49 L206 76" stroke="#c93a5e" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="206" cy="80" r="6" fill="#c93a5e"/>
+</svg>

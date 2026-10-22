@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" role="img" aria-label="A bicycle under a sun, with a large leaf">
+  <rect width="320" height="240" fill="#dfefd2"/>
+  <!-- sun -->
+  <circle cx="246" cy="64" r="26" fill="#f2b63d"/>
+  <g stroke="#f2b63d" stroke-width="5" stroke-linecap="round">
+    <path d="M246 22 V30"/><path d="M246 98 V106"/><path d="M204 64 H212"/><path d="M280 64 H288"/>
+    <path d="M216 34 L222 40"/><path d="M270 88 L276 94"/><path d="M276 34 L270 40"/><path d="M222 88 L216 94"/>
+  </g>
+  <!-- leaf -->
+  <path d="M40 150 C40 92 82 52 150 46 C150 112 110 150 40 150 Z" fill="#74c043" stroke="#2d6a3e" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M48 142 C78 118 110 88 138 58" stroke="#2d6a3e" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <path d="M84 112 L82 90 M104 92 L104 72 M84 112 L106 114" stroke="#2d6a3e" stroke-width="3" stroke-linecap="round"/>
+  <!-- bicycle -->
+  <g fill="none" stroke="#1f2a1f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="112" cy="182" r="34"/>
+    <circle cx="232" cy="182" r="34"/>
+    <path d="M112 182 L150 132 H210 L232 182"/>
+    <path d="M150 132 L172 182 L210 132"/>
+    <path d="M112 182 H172"/>
+    <path d="M142 118 H162"/><path d="M150 132 L146 118"/>
+    <path d="M210 132 L204 112 H220"/>
+  </g>
+  <circle cx="172" cy="182" r="7" fill="#c93a5e"/>
+  <path d="M136 117 H166" stroke="#c93a5e" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="112" cy="182" r="5" fill="#1f2a1f"/><circle cx="232" cy="182" r="5" fill="#1f2a1f"/>
+</svg>

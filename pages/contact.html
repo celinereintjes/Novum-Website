@@ -1,0 +1,43 @@
+title: Contact · NovUM
+description: Contact NovUM, the student party at Maastricht University, or send a question to your councillor.
+
+  <section class="contact" aria-labelledby="page-title">
+    <div class="wrap contact-grid">
+      <div class="contact-text">
+        <h1 id="page-title" class="rise">Contact</h1>
+        <p class="lead rise">A problem with your course, your exams or student life at UM? A question for the board, or an idea for a collaboration? Send us a message and the right person will reply.</p>
+        <p class="rise">If it's about your faculty, choose your council and we'll pass it straight to your NovUM councillor.</p>
+        <h2 class="contact-h rise">Contact details</h2>
+        <ul class="contact-list rise">
+          <li><span>Email</span><a href="mailto:novum@maastrichtuniversity.nl">novum@maastrichtuniversity.nl</a></li>
+          <li><span>Instagram</span><a href="https://www.instagram.com/novummaastricht/" target="_blank" rel="noopener">@novummaastricht</a></li>
+          <!--LINKEDIN_ITEM-->
+          <li><span>Substack</span><a href="https://novumthinks.substack.com/" target="_blank" rel="noopener">NovUM Thinks</a></li>
+        </ul>
+        <p class="form-note rise">Messages sent with this form are stored in NovUM's database and emailed to the board. See our <a href="privacy.html">privacy statement</a>.</p>
+      </div>
+      <form class="form rise" id="contactForm" method="post" novalidate>
+        <div class="field-row">
+          <div class="field"><label for="c-name">Name</label><input id="c-name" name="name" autocomplete="name" required maxlength="120"></div>
+          <div class="field"><label for="c-email">Email</label><input id="c-email" name="email" type="email" autocomplete="email" required maxlength="200"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="c-topic">What's it about?</label>
+            <select id="c-topic" name="topic">
+              <option>General question</option>
+              <option>An issue in my faculty</option>
+              <option>Housing or student life</option>
+              <option>Membership</option>
+              <option>Press</option>
+              <option>Collaboration or partnership</option>
+              <option>Other</option>
+            </select></div>
+          <div class="field"><label for="c-council">Council <span class="opt">(optional)</span></label><select id="c-council" name="council" data-councils><option value="">Not about a council</option></select></div>
+        </div>
+        <div class="field"><label for="c-msg">Message</label><textarea id="c-msg" name="message" rows="7" required minlength="5" maxlength="4000"></textarea></div>
+        <div class="hp" aria-hidden="true"><label for="c-web">Website</label><input id="c-web" name="website" tabindex="-1" autocomplete="off"></div>
+        <button class="btn btn-big btn-ink" type="submit">Send message</button>
+        <p class="form-msg" role="status"></p>
+      </form>
+    </div>
+  </section>

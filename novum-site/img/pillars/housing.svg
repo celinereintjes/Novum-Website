@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" role="img" aria-label="A row of Maastricht houses with stepped gables">
+  <rect width="320" height="240" fill="#f5f1e7"/>
+  <circle cx="262" cy="50" r="24" fill="#f7d9e0"/>
+  <!-- house 1: stepped gable -->
+  <path d="M22 210 V110 H34 V96 H46 V82 H70 V96 H82 V110 H94 V210 Z" fill="#c93a5e" stroke="#1f2a1f" stroke-width="4" stroke-linejoin="round"/>
+  <rect x="38" y="124" width="14" height="20" rx="3" fill="#fffdf8"/><rect x="64" y="124" width="14" height="20" rx="3" fill="#fffdf8"/>
+  <rect x="38" y="156" width="14" height="20" rx="3" fill="#fffdf8"/><rect x="64" y="156" width="14" height="20" rx="3" fill="#fffdf8"/>
+  <rect x="50" y="98" width="16" height="12" rx="3" fill="#fffdf8"/>
+  <!-- house 2: tall, curved gable -->
+  <path d="M94 210 V96 C94 70 108 56 122 50 C136 56 150 70 150 96 V210 Z" fill="#74c043" stroke="#1f2a1f" stroke-width="4" stroke-linejoin="round"/>
+  <circle cx="122" cy="80" r="9" fill="#fffdf8"/>
+  <rect x="106" y="108" width="14" height="22" rx="3" fill="#fffdf8"/><rect x="126" y="108" width="14" height="22" rx="3" fill="#fffdf8"/>
+  <rect x="106" y="142" width="14" height="22" rx="3" fill="#fffdf8"/><rect x="126" y="142" width="14" height="22" rx="3" fill="#fffdf8"/>
+  <path d="M112 210 V184 C112 176 132 176 132 184 V210 Z" fill="#2d6a3e"/>
+  <!-- house 3: pointed -->
+  <path d="M150 210 V116 L190 76 L230 116 V210 Z" fill="#fffdf8" stroke="#1f2a1f" stroke-width="4" stroke-linejoin="round"/>
+  <rect x="166" y="128" width="16" height="22" rx="3" fill="#dfefd2" stroke="#2d6a3e" stroke-width="3"/><rect x="198" y="128" width="16" height="22" rx="3" fill="#dfefd2" stroke="#2d6a3e" stroke-width="3"/>
+  <path d="M180 210 V176 H200 V210 Z" fill="#c93a5e"/>
+  <circle cx="190" cy="104" r="7" fill="#2d6a3e"/>
+  <!-- house 4: stepped, deep green -->
+  <path d="M230 210 V124 H240 V112 H250 V100 H278 V112 H288 V124 H298 V210 Z" fill="#2d6a3e" stroke="#1f2a1f" stroke-width="4" stroke-linejoin="round"/>
+  <rect x="244" y="136" width="14" height="20" rx="3" fill="#fffdf8"/><rect x="270" y="136" width="14" height="20" rx="3" fill="#fffdf8"/>
+  <rect x="244" y="168" width="14" height="20" rx="3" fill="#fffdf8"/><rect x="270" y="168" width="14" height="20" rx="3" fill="#fffdf8"/>
+  <!-- street -->
+  <rect x="0" y="208" width="320" height="32" fill="#1f2a1f"/>
+  <path d="M20 224 H52 M84 224 H116 M148 224 H180 M212 224 H244 M276 224 H308" stroke="#fffdf8" stroke-width="4" stroke-linecap="round"/>
+</svg>

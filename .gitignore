@@ -1,0 +1,8 @@
+# Mac and editor files
+.DS_Store
+.claude/
+.vscode/
+
+# Full-size board photos (51 MB): keep these in the NovUM drive, not on GitHub.
+# The resized versions the website uses are in novum-site/img/board/.
+photo-originals/
