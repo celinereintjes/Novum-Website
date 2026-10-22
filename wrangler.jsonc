@@ -1,0 +1,10 @@
+// Cloudflare settings: when this repository is connected to the "novum-website" Worker,
+// every push to GitHub publishes the novum-site folder automatically.
+// The name must match the Worker's name in the Cloudflare dashboard.
+{
+  "name": "novum-website",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./novum-site"
+  }
+}
