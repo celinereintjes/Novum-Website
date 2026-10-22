@@ -6,20 +6,26 @@ then a blank line, then the HTML inside <main>). The header, menu and footer liv
 """
 import hashlib
 import re
+import unicodedata
 from pathlib import Path
 
 root = Path(__file__).resolve().parent.parent
 NAV = [  # (file, label)
     ('index.html', 'About'),
     ('work.html', 'Our work'),
+    ('councils.html', 'Councils'),
     ('board.html', 'Board'),
-    ('alumni.html', 'Alumni'),
     ('contact.html', 'Contact'),
 ]
 JOIN = 'join.html'
 SUBSTACK = 'https://novumthinks.substack.com/'
 # Paste NovUM's LinkedIn page here, e.g. 'https://www.linkedin.com/company/...'. Empty = not shown.
-LINKEDIN = 'https://www.linkedin.com/company/novum-maastricht/'
+LINKEDIN = 'https://www.linkedin.com/company/novummaastricht/'
+# Shown in the footer as "Website by ...". Empty = not shown. Add a link (e.g. LinkedIn) if you want.
+WEBSITE_BY = 'Céline Reintjes'
+WEBSITE_BY_LINK = ''
+# Photographer of the board photos. Empty = not shown.
+BOARD_PHOTOGRAPHER = 'Tag&amp;Chase'
 
 LAYOUT = """<!doctype html>
 <html lang="en">
@@ -62,11 +68,12 @@ LAYOUT = """<!doctype html>
       <li><a href="https://novumthinks.substack.com/" target="_blank" rel="noopener">NovUM Thinks on Substack</a></li>
       <li><a href="https://www.instagram.com/novummaastricht/" target="_blank" rel="noopener">Instagram @novummaastricht</a></li>
       {linkedin_foot}
+      
     </ul></div>
   </div>
   <div class="wrap foot-bottom">
-    <p>© NovUM Student Party Maastricht · <a href="privacy.html">Privacy statement</a></p>
-    <p>Hoge Brug photo: R. Henrik Nilsson, <a href="https://commons.wikimedia.org/wiki/File:Hoge_Brug_one_from_SW_Maastricht_the_Netherlands_August_10_2024.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a></p>
+    <p>© NovUM Student Party Maastricht · <a href="privacy.html">Privacy statement</a>{made_by}</p>
+    <p>{foot_credit}<a href="privacy.html#photo-credits">Photo credits</a></p>
   </div>
 </footer>
 
@@ -74,10 +81,61 @@ LAYOUT = """<!doctype html>
 <script src="js/config.js"></script>
 <script src="js/data.js"></script>
 <script src="js/api.js"></script>
+<script src="js/textformat.js"></script>
+<script src="js/issues.js"></script>
 <script src="js/site.js"></script>
 </body>
 </html>
 """
+
+
+def esc(s):
+    return ''.join({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}.get(c, c) for c in str(s))
+
+
+def slug(t):
+    t = ''.join(c for c in unicodedata.normalize('NFKD', t.lower()) if not unicodedata.combining(c))
+    return re.sub(r'^-|-$', '', re.sub(r'[^a-z0-9]+', '-', t))
+
+
+def inline(text):
+    s = esc(text)
+    s = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', s)
+
+    def link(m):
+        label, u = m.group(1), m.group(2).replace('&amp;', '&')
+        if not re.match(r'^(https?://|mailto:|[a-z0-9_-]+\.html(#[\w-]+)?$|#[\w-]+$)', u, re.I):
+            return label
+        ext = ' target="_blank" rel="noopener"' if re.match(r'^https?:', u, re.I) else ''
+        return f'<a href="{esc(u)}"{ext}>{label}</a>'
+    return re.sub(r'\[([^\]]+)\]\(((?:[^()\s]|\([^()\s]*\))+)\)', link, s)
+
+
+def render_text(md):
+    """Same safe formatting as js/textformat.js (NovumText.render); keep them in sync."""
+    out, para, items = [], [], []
+
+    def flush_para():
+        if para:
+            out.append(f'<p>{inline(" ".join(para))}</p>'); para.clear()
+
+    def flush_list():
+        if items:
+            out.append('<ul>' + ''.join(f'<li>{inline(li)}</li>' for li in items) + '</ul>'); items.clear()
+    for raw in str(md or '').replace('\r\n', '\n').replace('\r', '\n').split('\n'):
+        line = raw.strip()
+        if not line:
+            flush_para(); flush_list()
+        elif m := re.match(r'^(#{2,3})\s+(.+)$', line):
+            flush_para(); flush_list()
+            tag = 'h2' if len(m.group(1)) == 2 else 'h3'
+            out.append(f'<{tag} id="{slug(m.group(2))}">{inline(m.group(2))}</{tag}>')
+        elif m := re.match(r'^[-*]\s+(.+)$', line):
+            flush_para(); items.append(m.group(1))
+        else:
+            flush_list(); para.append(line)
+    flush_para(); flush_list()
+    return '\n'.join(out)
 
 
 def build(src: Path):
@@ -91,9 +149,14 @@ def build(src: Path):
     li_item = f'<li><span>LinkedIn</span><a href="{LINKEDIN}" target="_blank" rel="noopener">NovUM Maastricht</a></li>' if LINKEDIN else ''
     li_foot = f'<li><a href="{LINKEDIN}" target="_blank" rel="noopener">LinkedIn</a></li>' if LINKEDIN else ''
     body = body.replace('<!--LINKEDIN_ITEM-->', li_item)
+    body = body.replace('<!--BOARD_CREDIT-->', f'<p class="photo-credit">Board photos by {BOARD_PHOTOGRAPHER}</p>' if BOARD_PHOTOGRAPHER else '')
+    if '<!--PRIVACY_BODY-->' in body:
+        body = body.replace('<!--PRIVACY_BODY-->', render_text((root / 'novum-site' / 'content' / 'privacy.md').read_text(encoding='utf8')))
+    by = (f'<a href="{WEBSITE_BY_LINK}" target="_blank" rel="noopener">{WEBSITE_BY}</a>' if WEBSITE_BY_LINK else WEBSITE_BY) if WEBSITE_BY else ''
     html = LAYOUT.format(title=meta['title'], description=meta['description'], page=src.stem,
                          nav=nav, join_current=cur(JOIN), body=body.rstrip(), foot_links=foot_links,
-                         linkedin_foot=li_foot)
+                         linkedin_foot=li_foot, made_by=f' · Website by {by}' if by else '',
+                         foot_credit=f'Board photos: {BOARD_PHOTOGRAPHER} · ' if BOARD_PHOTOGRAPHER else '')
     html = STAMP_RE.sub(stamp, html)
     (root / 'novum-site' / out_name).write_text(html, encoding='utf8')
     return out_name

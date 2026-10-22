@@ -268,9 +268,28 @@
   // ---------- board ----------
   function renderBoard() {
     if (!$('#people')) return;
-    $('#people').innerHTML = data.people.filter(p => p.kind === 'board').map(p => `<li class="person reveal">
-      <div class="ph">${safeUrl(p.photo_url) ? `<img src="${safeUrl(p.photo_url)}" alt="${esc(p.name)}" loading="lazy">` : ''}</div>
-      <h3>${esc(p.name)}</h3><p class="role">${esc(p.role)}</p><p>${esc(p.bio)}</p></li>`).join('');
+    // Instagram details (From, Studies, Year, Why, Interests). If the live database doesn't have them yet
+    // (supabase/board_profiles.sql not run), use the built-in ones from js/data.js for the same person.
+    const builtIn = name => ((window.NOVUM_DEMO || {}).people || []).find(x => x.kind === 'board' && x.name === name) || {};
+    const pick = (p, k) => p[k] || (p.hometown === undefined || !p.hometown ? builtIn(p.name)[k] : '') || '';
+    const facts = p => [['From', pick(p, 'hometown')], ['Studies', pick(p, 'study')], ['Year', pick(p, 'study_year')]]
+      .filter(f => f[1]).map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('');
+    const tags = p => String(pick(p, 'interests')).split(',').map(t => t.trim()).filter(Boolean).map(t => t[0].toUpperCase() + t.slice(1));
+    const cards = $('#people').classList.contains('people-cards');  // the home page shows a compact row without details
+    const profile = p => cards && (facts(p) || pick(p, 'why_novum') || tags(p).length ? `<div class="profile">
+        <p class="hi">Hi, I'm ${esc(p.name.split(' ')[0])}</p>
+        ${facts(p) ? `<dl class="facts">${facts(p)}</dl>` : ''}
+        ${pick(p, 'why_novum') ? `<blockquote class="why"><span>Why I joined NovUM</span>${esc(pick(p, 'why_novum'))}</blockquote>` : ''}
+        ${tags(p).length ? `<div class="interests"><span>Interests</span><ul class="tags">${tags(p).map(t => `<li>${esc(t)}</li>`).join('')}</ul></div>` : ''}
+      </div><span class="more-hint" aria-hidden="true">More about ${esc(p.name.split(' ')[0])}</span>` : '');
+    $('#people').innerHTML = data.people.filter(p => p.kind === 'board').map(p => `<li class="person reveal${profile(p) ? ' has-profile" tabindex="0' : ''}">
+      <div class="ph">${safeUrl(p.photo_url) ? `<img src="${safeUrl(p.photo_url)}" alt="${esc(p.name)}" loading="lazy">` : ''}${profile(p)}</div>
+      <h3>${esc(p.name)}</h3><p class="role">${esc(p.role)}</p><p class="bio">${esc(p.bio)}</p></li>`).join('');
+    // phones have no hover: a tap opens the details, another tap (or Escape) closes them
+    $('#people').querySelectorAll('.has-profile').forEach(li => {
+      li.addEventListener('click', () => li.classList.toggle('show'));
+      li.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); li.classList.toggle('show'); } if (e.key === 'Escape') { li.classList.remove('show'); li.blur(); } });
+    });
   }
 
   // ---------- forms ----------

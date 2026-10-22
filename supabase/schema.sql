@@ -44,6 +44,10 @@ create table if not exists people (
   photo_url text,
   council_id text references councils(id) on delete set null,  -- councillors only
   study text not null default '',
+  hometown text not null default '',
+  study_year text not null default '',
+  why_novum text not null default '',
+  interests text not null default '',
   sort int not null default 0,
   active boolean not null default true,
   created_at timestamptz not null default now()
@@ -102,6 +106,12 @@ create table if not exists messages (
 -- ---------------------------------------------------------------
 alter table admins enable row level security;
 alter table councils enable row level security;
+-- added later: board profile details (safe on existing databases)
+alter table people add column if not exists hometown text not null default '',
+  add column if not exists study_year text not null default '',
+  add column if not exists why_novum text not null default '',
+  add column if not exists interests text not null default '';
+
 alter table people enable row level security;
 alter table pillars enable row level security;
 alter table achievements enable row level security;

@@ -12,7 +12,7 @@
   function inline(text) {
     let s = esc(text);
     s = s.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
-    s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, label, url) => {
+    s = s.replace(/\[([^\]]+)\]\(((?:[^()\s]|\([^()\s]*\))+)\)/g, (m, label, url) => {
       const u = url.replace(/&amp;/g, '&');
       if (!/^(https?:\/\/|mailto:|[a-z0-9_-]+\.html(#[\w-]+)?$|#[\w-]+$)/i.test(u)) return label;
       const ext = /^https?:/i.test(u) ? ' target="_blank" rel="noopener"' : '';

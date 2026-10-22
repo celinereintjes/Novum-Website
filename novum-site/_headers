@@ -1,0 +1,15 @@
+# Security headers, applied by Cloudflare Pages and Netlify.
+# If you add a new outside service (an embed, a script, an image host), it must be added
+# to the Content-Security-Policy below or the browser will block it.
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://hvsyqbfqhxckxnapkcpw.supabase.co; font-src 'self'; connect-src 'self' https://hvsyqbfqhxckxnapkcpw.supabase.co wss://hvsyqbfqhxckxnapkcpw.supabase.co; frame-src https://docs.google.com; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
+  Cross-Origin-Opener-Policy: same-origin
+
+/admin.html
+  Cache-Control: no-store
+  X-Robots-Tag: noindex, nofollow

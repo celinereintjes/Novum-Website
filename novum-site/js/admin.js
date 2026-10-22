@@ -594,6 +594,12 @@
       { name: 'role', label: kind === 'board' ? 'Position' : kind === 'alumni' ? 'Role in NovUM' : 'Seat', hint: kind === 'board' ? 'e.g. President' : kind === 'alumni' ? 'e.g. President, FASoS councillor' : 'e.g. Councillor, Faculty council chair', half: kind !== 'board' },
     ];
     if (kind === 'councillor') fields.push({ name: 'council_id', label: 'Council', type: 'select', options: councilOptions('Choose a council'), nullable: true, half: true }, { name: 'study', label: 'Study programme', hint: 'Optional, shown under their name.' });
+    if (kind === 'board') fields.push(
+      { name: 'hometown', label: 'From', hint: 'e.g. Hamburg, Germany', half: true },
+      { name: 'study_year', label: 'Year', hint: 'e.g. 2nd year', half: true },
+      { name: 'study', label: 'Study programme' },
+      { name: 'why_novum', label: 'Why I joined NovUM', type: 'textarea', rows: 2, hint: 'In their own words, one or two sentences.' },
+      { name: 'interests', label: 'Interests', hint: 'Separate with commas, e.g. Climbing, crochet, side quests' });
     if (kind === 'alumni') fields.push({ name: 'period', label: 'Years', hint: 'e.g. 2019–21', half: true });
     fields.push(
       { name: 'bio', label: kind === 'alumni' ? 'What they do now' : 'Short description', type: 'textarea', rows: 3 },

@@ -1,6 +1,4 @@
--- Adds NovUM's councillors for 2026/27 (names only, no photos).
--- Run once in Supabase: SQL Editor -> New query -> paste -> Run.
--- It replaces any councillors already in the database, so it is safe to run again.
+
 begin;
 delete from people where kind = 'councillor';
 insert into people (kind, name, role, council_id, sort) values
@@ -27,4 +25,4 @@ insert into people (kind, name, role, council_id, sort) values
 commit;
 
 -- Check: should list 7 councils and 20 councillors in total.
-select council_id, count(*) from people where kind = 'councillor' group by council_id order by council_id;
+select council_id, count(*) from people where kind = 'councillor' group by council_id order by council_id; 

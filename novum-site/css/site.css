@@ -842,3 +842,67 @@ body[data-page="work"] .st-col .st-shaft { color: var(--txt); border-left: 1px s
 body[data-page="work"] .st-col:hover .st-shaft, body[data-page="work"] .st-col:focus-visible .st-shaft {
   background: repeating-linear-gradient(90deg, rgba(0, 0, 0, .07) 0 2px, transparent 2px 14px), linear-gradient(90deg, var(--c2), var(--cap)); }
 body[data-page="work"] .st-col:hover .st-cap, body[data-page="work"] .st-col:focus-visible .st-cap { background: var(--txt); }
+
+/* ---------- Board page: the photo flips over like a card to show the Instagram details ---------- */
+.people-row .person .profile, .people-row .person .more-hint { display: none; }
+.people-cards .person .ph { position: relative; overflow: visible; }
+.people-cards .has-profile .ph { background: none; }
+.people-cards .has-profile { cursor: default; outline: none; }
+.people-cards .has-profile:focus-visible { box-shadow: 0 0 0 3px var(--brand), var(--shadow-lg); }
+/* front (photo) and back (details) each turn half a circle; the side facing away is hidden */
+.people-cards .has-profile .ph img, .profile { backface-visibility: hidden; -webkit-backface-visibility: hidden; transition: transform .6s cubic-bezier(.4, .2, .2, 1); }
+.people-cards .has-profile .ph img { border-radius: inherit; transform: perspective(1000px) rotateY(0deg); }
+.profile { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; justify-content: center; gap: .75rem; padding: 1.1rem; overflow: auto;
+  border-radius: inherit; transform: perspective(1000px) rotateY(180deg); }
+.people-cards .has-profile.show .ph img, .people-cards .has-profile:focus-visible .ph img { transform: perspective(1000px) rotateY(-180deg); }
+.has-profile.show .profile, .has-profile:focus-visible .profile { transform: perspective(1000px) rotateY(0deg); }
+.facts { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: .35rem .9rem; font-size: .9375rem; }
+.facts div { display: contents; }
+.facts dt { color: var(--text-2); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding-top: .25em; }
+.facts dd { margin: 0; color: var(--ink); font-weight: 600; }
+.why { margin: 0; padding: .7rem .85rem .75rem .95rem; background: #fff; border-left: 3px solid var(--pink); border-radius: var(--radius-xs) var(--radius-sm) var(--radius-sm) var(--radius-xs); color: var(--ink); font-size: .9rem; line-height: 1.45; }
+.why span { display: block; margin-bottom: .2rem; font-size: .68rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .35rem; }
+.tags li { background: #fff; font-size: .8rem; font-weight: 600; padding: .2rem .55rem; border-radius: var(--radius-xs); }
+.more-hint { position: absolute; z-index: 2; right: .6rem; bottom: .6rem; display: inline-flex; align-items: center; gap: .35rem; background: rgba(255, 255, 255, .92); font-size: .78rem; font-weight: 700; padding: .35rem .6rem; border-radius: var(--radius-xs); box-shadow: var(--shadow-sm); transition: opacity .2s; pointer-events: none; }
+.more-hint::before { content: "↻"; display: grid; place-items: center; width: 1.15rem; height: 1.15rem; border-radius: 50%; color: #fff; font-size: .8rem; line-height: 1; }
+.has-profile.show .more-hint, .has-profile:focus-visible .more-hint { opacity: 0; }
+@media (max-width: 640px) {
+  .people-cards { grid-template-columns: minmax(0, 1fr); }
+}
+/* with a mouse, hovering is enough; on phones a tap toggles .show (hover would stick after a tap) */
+@media (hover: hover) {
+  .people-cards .has-profile:hover .ph img { transform: perspective(1000px) rotateY(-180deg); }
+  .has-profile:hover .profile { transform: perspective(1000px) rotateY(0deg); }
+  .has-profile:hover .more-hint { opacity: 0; }
+}
+@media (hover: none) { .more-hint::after { content: " (tap)"; font-weight: 600; opacity: .7; } }
+/* reduced motion: a simple fade instead of the flip */
+@media (prefers-reduced-motion: reduce) {
+  .people-cards .has-profile .ph img, .profile { transition: opacity .2s; transform: none !important; backface-visibility: visible; }
+  .profile { opacity: 0; }
+  .has-profile.show .profile, .has-profile:focus-visible .profile { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) and (hover: hover) { .has-profile:hover .profile { opacity: 1; } }
+
+/* ---------- Board page: more colour. Cards alternate green and pink, like the pillars on Our work ---------- */
+body[data-page="board"] .section-blush { background:
+    radial-gradient(40% 45% at 0% 0%, rgba(116, 192, 67, .45), transparent 70%),
+    radial-gradient(40% 45% at 100% 45%, rgba(201, 58, 94, .3), transparent 70%),
+    radial-gradient(45% 40% at 10% 100%, rgba(201, 58, 94, .22), transparent 70%),
+    linear-gradient(180deg, #dcefd0, #f7e1e7); }
+.people-cards .person { --accent: var(--brand); --accent-ink: var(--deep); --accent-soft: #e3f2d8; --panel: #f3faee; border-top: 6px solid var(--accent); }
+.people-cards .person:nth-child(even) { --accent: var(--pink); --accent-ink: #8e2442; --accent-soft: #fbe4ea; --panel: #fff4f6; }
+.section-blush .people-cards .person .role, .people-cards .person .role { color: var(--accent-ink); }
+.people-cards .profile { background: radial-gradient(80% 50% at 100% 0%, rgba(255, 255, 255, .55), transparent 70%), var(--accent-soft); }
+.profile .hi { margin: 0; font-size: 1.35rem; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; color: var(--accent-ink); }
+.people-cards .profile .facts dt { color: var(--accent-ink); opacity: .7; }
+.people-cards .facts dd { color: var(--accent-ink); }
+.people-cards .why { border-left-color: var(--accent); }
+.people-cards .why span, .interests > span { color: var(--accent-ink); }
+.interests > span { display: block; margin-bottom: .3rem; font-size: .68rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.people-cards .tags li { background: #fff; color: var(--accent-ink); }
+.people-cards .more-hint::before { background: var(--accent); }
+.people-cards .more-hint { color: var(--accent-ink); }
+.people-cards .more-hint::before { background: var(--accent); }
+.people-cards .has-profile:focus-visible { box-shadow: 0 0 0 3px var(--accent), var(--shadow-lg); }
