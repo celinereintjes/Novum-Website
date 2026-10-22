@@ -11,7 +11,7 @@
   let data;
 
   // ---------- our work: the five pillars and what we achieved ----------
-  const slug = t => String(t).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const slug = t => String(t).toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
   // Credits for the pillar photos (Wikimedia Commons). Required by their licences; keep them with the photos.
   const PHOTO_CREDITS = {
@@ -282,9 +282,15 @@
         ${pick(p, 'why_novum') ? `<blockquote class="why"><span>Why I joined NovUM</span>${esc(pick(p, 'why_novum'))}</blockquote>` : ''}
         ${tags(p).length ? `<div class="interests"><span>Interests</span><ul class="tags">${tags(p).map(t => `<li>${esc(t)}</li>`).join('')}</ul></div>` : ''}
       </div><span class="more-hint" aria-hidden="true">More about ${esc(p.name.split(' ')[0])}</span>` : '');
-    $('#people').innerHTML = data.people.filter(p => p.kind === 'board').map(p => `<li class="person reveal${profile(p) ? ' has-profile" tabindex="0' : ''}">
-      <div class="ph">${safeUrl(p.photo_url) ? `<img src="${safeUrl(p.photo_url)}" alt="${esc(p.name)}" loading="lazy">` : ''}${profile(p)}</div>
-      <h3>${esc(p.name)}</h3><p class="role">${esc(p.role)}</p><p class="bio">${esc(p.bio)}</p></li>`).join('');
+    const inner = p => `<div class="ph">${safeUrl(p.photo_url) ? `<img src="${safeUrl(p.photo_url)}" alt="${esc(p.name)}" loading="lazy">` : ''}${profile(p)}</div>
+      <h3>${esc(p.name)}</h3><p class="role">${esc(p.role)}</p><p class="bio">${esc(p.bio)}</p>`;
+    // home page: each member links to their card on the board page; board page: cards get an id to land on
+    $('#people').innerHTML = data.people.filter(p => p.kind === 'board').map(p => cards
+      ? `<li class="person reveal${profile(p) ? ' has-profile" tabindex="0' : ''}" id="${slug(p.name)}">${inner(p)}</li>`
+      : `<li class="person reveal"><a class="person-link" href="board.html#${slug(p.name)}">${inner(p)}</a></li>`).join('');
+    // arriving from the home page (board.html#name): scroll to that person and flip their card
+    const target = cards && location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (target) { target.classList.add('show', 'in'); requestAnimationFrame(() => target.scrollIntoView({ block: 'center' })); }
     // phones have no hover: a tap opens the details, another tap (or Escape) closes them
     $('#people').querySelectorAll('.has-profile').forEach(li => {
       li.addEventListener('click', () => li.classList.toggle('show'));

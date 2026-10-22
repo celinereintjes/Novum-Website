@@ -906,3 +906,7 @@ body[data-page="board"] .section-blush { background:
 .people-cards .more-hint { color: var(--accent-ink); }
 .people-cards .more-hint::before { background: var(--accent); }
 .people-cards .has-profile:focus-visible { box-shadow: 0 0 0 3px var(--accent), var(--shadow-lg); }
+
+/* home page: board members link to their card on the board page */
+.person-link { display: block; color: inherit; text-decoration: none; }
+.person-link:focus-visible { outline: 2px solid var(--deep); outline-offset: 4px; border-radius: var(--radius); }
