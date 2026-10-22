@@ -60,6 +60,7 @@ LAYOUT = """<!doctype html>
     <div class="foot-brand">
       <a class="mark mark-light" href="index.html"><img src="img/logo-text-white.png" alt="NovUM, home" width="1000" height="179"></a>
       <p>Student representation party at Maastricht University since 2003.</p>
+      <p><strong>Don't hope for change, vote for it.</strong></p>
     </div>
     <nav aria-label="Pages"><h2>Pages</h2><ul>{foot_links}</ul></nav>
     <div><h2>Get involved</h2><ul>
