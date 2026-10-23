@@ -917,11 +917,11 @@ body[data-page="board"] .section-blush { background:
 .support h2 { margin-bottom: .75rem; }
 .support-intro { color: var(--text-2); max-width: 34em; margin: 0 0 1.75rem; }
 .advisors { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
-.advisor, .confidant { display: grid; grid-template-columns: 116px minmax(0, 1fr); gap: 1.1rem; align-items: center; }
+.advisor, .confidant { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 1.1rem; align-items: center; }
 .advisor { background: #fff; border-radius: var(--radius); box-shadow: var(--shadow-sm); padding: .9rem; border-left: 5px solid var(--brand); }
 .advisor:nth-child(even) { border-left-color: var(--pink); }
-.advisor-ph { width: 116px; aspect-ratio: 1; border-radius: var(--radius-sm); overflow: hidden; background: var(--mint); display: grid; place-items: center; }
-.advisor-ph img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 48%; transform: scale(1.4); transform-origin: 50% 48%; } /* zoom in on the face: these photos are wide shots */
+.advisor-ph { width: 150px; aspect-ratio: 4 / 5; border-radius: var(--radius-sm); overflow: hidden; background: var(--mint); display: grid; place-items: center; }
+.advisor-ph img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 48%; transform: scale(1.25); transform-origin: 50% 45%; } /* zoom in on the face: these photos are wide shots */
 .advisor-ph span { font-weight: 800; font-size: 1.6rem; color: var(--deep); }
 .advisor h3, .confidant h3 { margin: 0 0 .15rem; font-size: 1.125rem; }
 .advisor .role { margin: 0 0 .35rem; color: var(--deep); font-weight: 700; font-size: .9375rem; }
@@ -945,4 +945,4 @@ body[data-page="board"] .section-blush { background:
 .support + .cta-band { --wave-from: #fafbf7; }
 body[data-page="board"] .section-blush + .support[hidden] + .cta-band, body[data-page="board"] .support[hidden] + .cta-band { --wave-from: #f7e1e7; }
 @media (max-width: 900px) { .support-grid { grid-template-columns: minmax(0, 1fr); } }
-@media (max-width: 480px) { .advisor, .confidant { grid-template-columns: 84px minmax(0, 1fr); } .advisor-ph { width: 84px; } }
+@media (max-width: 480px) { .advisor, .confidant { grid-template-columns: 104px minmax(0, 1fr); } .advisor-ph { width: 104px; } }
