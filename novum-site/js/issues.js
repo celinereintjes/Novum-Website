@@ -53,7 +53,7 @@ window.NOVUM_ISSUES = [
       ['A formal complaint', 'Through UM’s complaints procedure, if you want action to be taken.'],
       ['If you are in danger', 'Call 112. For non-urgent reports to the police, call 0900-8844.']
     ],
-    novum: 'Social safety is a priority for us: we secured extra funding and set up a working group on safety in student associations.'
+    novum: 'Social safety is a priority for us: we secured extra funding, and our councillors help develop the code of conduct for student associations.'
   },
   {
     id: 'money', title: 'Tuition fees, study finance or registration', faculty: false, council: 'uc', topic: 'General question',

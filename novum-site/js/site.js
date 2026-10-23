@@ -90,6 +90,41 @@
     }).join('');
   }
 
+  // ---------- our work: what our councillors did in each faculty council ----------
+  function renderFacultyWork() {
+    if (!$('#fwChoices')) return;
+    const faculties = data.councils.filter(c => c.id !== 'uc');
+    // until supabase/our_work_feedback.sql has run, live achievements have no council: take it from js/data.js by title
+    const builtIn = ((window.NOVUM_DEMO || {}).achievements || []);
+    const councilOf = a => 'council_id' in a ? a.council_id : (builtIn.find(b => b.title === a.title) || {}).council_id;
+    const work = id => data.achievements.filter(a => councilOf(a) === id);
+    const reps = id => data.people.filter(p => p.kind === 'councillor' && p.council_id === id && p.active !== false);
+    const pillarOf = a => data.pillars.find(p => p.id === a.pillar_id);
+    $('#fwChoices').innerHTML = faculties.map(c => `<button type="button" data-id="${esc(c.id)}" aria-pressed="false" title="${esc(c.name)}">
+      ${esc(c.short_name)}${work(c.id).length ? `<span class="n">${work(c.id).length}</span>` : ''}</button>`).join('');
+    const show = id => {
+      const c = faculties.find(x => x.id === id);
+      if (!c) return;
+      $('#fwChoices').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.id === id));
+      const items = work(id), names = reps(id).map(p => p.name);
+      $('#fwResult').innerHTML = `
+        <div class="fw-head"><h3>${esc(c.name)}</h3>
+          ${names.length ? `<p>Your NovUM councillors: ${names.map(esc).join(', ')}</p>` : ''}</div>
+        ${items.length ? `<ul class="fw-list">${items.map(a => `<li>
+            ${pillarOf(a) ? `<span class="fw-tag">${esc(pillarOf(a).title)}</span>` : ''}
+            <b>${esc(a.title)}</b><span>${esc(a.description)}</span></li>`).join('')}</ul>`
+          : `<p class="fw-empty">We haven't listed work from the ${esc(c.short_name)} council here yet. Our councillors there are busy: ask them what they're working on, or tell them what should change.</p>`}
+        <div class="actions">
+          <a class="btn" href="contact.html?council=${esc(c.id)}">Message your ${esc(c.short_name)} councillors</a>
+          <a class="btn btn-outline" href="councils.html?faculty=${esc(c.id)}#finder">Who represents me?</a>
+        </div>`;
+    };
+    $('#fwChoices').addEventListener('click', e => { const b = e.target.closest('button[data-id]'); if (b) show(b.dataset.id); });
+    // work.html?faculty=fse opens that faculty; otherwise start with the first faculty that has work listed
+    const pre = new URLSearchParams(location.search).get('faculty');
+    show(faculties.some(c => c.id === pre) ? pre : (faculties.find(c => work(c.id).length) || faculties[0]).id);
+  }
+
   // ---------- our work: the councillors in each council (names only) ----------
   function renderCouncilList() {
     if (!$('#councilList')) return;
@@ -472,7 +507,7 @@
     let t; addEventListener('resize', () => { clearTimeout(t); t = setTimeout(fitLines, 100); });
     try { data = await NovumAPI.loadContent(); }
     catch (err) { console.error('Could not load content, showing built-in content', err); data = NovumAPI.demoContent(); }
-    renderPillarCards(); renderPillars();
+    renderPillarCards(); renderPillars(); renderFacultyWork();
     // drop an illustration frame if its image fails to load
     document.querySelectorAll('.pillar-art img').forEach(img => img.addEventListener('error', () => img.parentElement.remove()));
     renderFinder(); setupFixit(); setupPoll(); renderCouncilList(); renderBoard(); renderSupport(); fillSelects(); prefillFromIssue();

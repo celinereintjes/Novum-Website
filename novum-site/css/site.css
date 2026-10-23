@@ -946,3 +946,26 @@ body[data-page="board"] .section-blush { background:
 body[data-page="board"] .section-blush + .support[hidden] + .cta-band, body[data-page="board"] .support[hidden] + .cta-band { --wave-from: #f7e1e7; }
 @media (max-width: 900px) { .support-grid { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 480px) { .advisor, .confidant { grid-template-columns: 104px minmax(0, 1fr); } .advisor-ph { width: 104px; } }
+
+/* ---------- Our work: work in your faculty ---------- */
+.faculty-work { background:
+    radial-gradient(45% 60% at 100% 0%, rgba(201, 58, 94, .12), transparent 70%),
+    radial-gradient(45% 60% at 0% 100%, rgba(116, 192, 67, .22), transparent 70%), var(--mint); }
+.fw-tool { background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); padding: clamp(1.25rem, 3vw, 2rem); }
+.fw-choices { display: flex; flex-wrap: wrap; gap: .5rem; }
+.fw-choices button { display: inline-flex; align-items: center; gap: .45rem; border-radius: var(--radius-sm); font: inherit; font-weight: 600; font-size: .9375rem; min-height: 44px; padding: .5rem 1rem; background: #fff; color: var(--ink); border: 1px solid #c9d2c4; cursor: pointer; transition: background .15s, border-color .15s, color .15s; }
+.fw-choices button:hover { border-color: var(--deep); }
+.fw-choices button[aria-pressed="true"] { background: var(--deep); border-color: var(--deep); color: #fff; }
+.fw-choices .n { display: grid; place-items: center; min-width: 1.35rem; height: 1.35rem; padding: 0 .3rem; border-radius: 999px; background: var(--pink); color: #fff; font-size: .75rem; font-weight: 700; }
+.fw-result { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.fw-head h3 { font-size: 1.25rem; margin: 0 0 .25rem; }
+.fw-head p { margin: 0 0 1.25rem; color: var(--text-2); font-size: .9375rem; }
+.fw-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+.fw-list li { display: flex; flex-direction: column; gap: .35rem; background: #fafbf7; border-radius: var(--radius-sm); border-left: 4px solid var(--brand); padding: 1rem 1.1rem; }
+.fw-list li:nth-child(even) { border-left-color: var(--pink); }
+.fw-list b { font-size: 1.0625rem; }
+.fw-list span:not(.fw-tag) { color: var(--text-2); font-size: .9375rem; }
+.fw-tag { align-self: flex-start; font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--deep); background: var(--mint); padding: .15rem .5rem; border-radius: var(--radius-xs); }
+.fw-empty { margin: 0; color: var(--text-2); max-width: 40em; }
+.fw-result .actions { margin-top: 1.5rem; }
+.faculty-work + .cta-band { --wave-from: var(--mint); }
