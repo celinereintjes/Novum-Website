@@ -582,16 +582,30 @@
       : list.length ? `${shown} alumni on the Alumni page${list.length > shown ? `, ${list.length - shown} hidden` : ''}.` : 'No alumni profiles yet. Until you add some, the Alumni page shows open slots and an invitation to get in touch.';
     return `<div class="title-row"><div><h1>${isBoard ? 'Board' : 'Alumni'}</h1><p class="sub">${sub}</p></div>
         <div class="actions"><button class="b b-primary" type="button" data-new="person:${kind}">${isBoard ? 'Add board member' : 'Add alum'}</button></div></div>
-      <div class="panel"><ul class="rows">${list.map(personRow).join('') || `<li class="empty">Nobody here yet.</li>`}</ul></div>`;
+      <div class="panel"><ul class="rows">${list.map(personRow).join('') || `<li class="empty">Nobody here yet.</li>`}</ul></div>${isBoard ? supportPanels() : ''}`;
+  }
+
+  // shown below the board on the Board page; each part stays hidden on the website until someone is added
+  function supportPanels() {
+    const panel = (kind, title, sub, add) => {
+      const list = D().people.filter(p => p.kind === kind).sort(bySort);
+      return `<section class="panel" style="margin-top:24px">
+        <div class="panel-head"><div><h2>${title}</h2><p>${sub}</p></div>
+          <button class="b" type="button" data-new="person:${kind}">${add}</button></div>
+        <ul class="rows" style="margin-top:12px">${list.map(personRow).join('') || `<li class="empty">Nobody added yet, so this part is hidden on the website.</li>`}</ul></section>`;
+    };
+    return panel('advisory', 'Advisory council', 'Shown below the board on the Board page.', 'Add advisory member')
+      + panel('confidential', 'Confidential person', 'Shown below the board, with a button to email them in confidence.', 'Add confidential person');
   }
 
   function editPerson(p = {}, kind, councilId) {
     kind = p.kind || kind;
-    const labels = { board: 'board member', councillor: 'councillor', alumni: 'alum' };
+    const labels = { board: 'board member', councillor: 'councillor', alumni: 'alum', advisory: 'advisory member', confidential: 'confidential person' };
     const sameKind = D().people.filter(x => x.kind === kind).length;
     const fields = [
       { name: 'name', label: 'Name', required: true },
-      { name: 'role', label: kind === 'board' ? 'Position' : kind === 'alumni' ? 'Role in NovUM' : 'Seat', hint: kind === 'board' ? 'e.g. President' : kind === 'alumni' ? 'e.g. President, FASoS councillor' : 'e.g. Councillor, Faculty council chair', half: kind !== 'board' },
+      { name: 'role', label: { board: 'Position', alumni: 'Role in NovUM', advisory: 'Role', confidential: 'Role' }[kind] || 'Seat',
+        hint: { board: 'e.g. President', alumni: 'e.g. President, FASoS councillor', advisory: 'Optional, e.g. Former President 2024–25', confidential: 'Optional, e.g. Confidential advisor' }[kind] || 'e.g. Councillor, Faculty council chair', half: kind !== 'board' },
     ];
     if (kind === 'councillor') fields.push({ name: 'council_id', label: 'Council', type: 'select', options: councilOptions('Choose a council'), nullable: true, half: true }, { name: 'study', label: 'Study programme', hint: 'Optional, shown under their name.' });
     if (kind === 'board') fields.push(
@@ -600,9 +614,10 @@
       { name: 'study', label: 'Study programme' },
       { name: 'why_novum', label: 'Why I joined NovUM', type: 'textarea', rows: 2, hint: 'In their own words, one or two sentences.' },
       { name: 'interests', label: 'Interests', hint: 'Separate with commas, e.g. Climbing, crochet, side quests' });
+    if (kind === 'confidential') fields.push({ name: 'email', label: 'Email address', hint: 'Shown as an "Email in confidence" button. Use an address only this person reads.' });
     if (kind === 'alumni') fields.push({ name: 'period', label: 'Years', hint: 'e.g. 2019–21', half: true });
     fields.push(
-      { name: 'bio', label: kind === 'alumni' ? 'What they do now' : 'Short description', type: 'textarea', rows: 3 },
+      { name: 'bio', label: kind === 'alumni' ? 'What they do now' : 'Short description', type: 'textarea', rows: 3, ...(kind === 'advisory' || kind === 'confidential' ? { hint: 'Optional. One or two sentences.' } : {}) },
       ...(kind === 'councillor' ? [] : [{ name: 'photo_url', label: 'Photo', type: 'photo', hint: 'Portrait photo, JPG or PNG under 5 MB. Shown at 4:5.' }]),
       { name: 'sort', label: 'Order', type: 'number', hint: 'Lower numbers come first.' },
       { name: 'active', label: 'Show on the website', type: 'check' }

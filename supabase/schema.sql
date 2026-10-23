@@ -36,7 +36,7 @@ alter table councils add column if not exists photo_url text;
 
 create table if not exists people (
   id uuid primary key default gen_random_uuid(),
-  kind text not null check (kind in ('board', 'councillor', 'alumni')),
+  kind text not null check (kind in ('board', 'councillor', 'alumni', 'advisory', 'confidential')),
   name text not null,
   role text not null default '',       -- board: position; councillor: seat; alumni: role they had
   period text not null default '',     -- e.g. '2024–25' (used for alumni)
@@ -111,6 +111,10 @@ alter table people add column if not exists hometown text not null default '',
   add column if not exists study_year text not null default '',
   add column if not exists why_novum text not null default '',
   add column if not exists interests text not null default '';
+-- added later: advisory council and confidential person (shown below the board)
+alter table people add column if not exists email text not null default '';
+alter table people drop constraint if exists people_kind_check;
+alter table people add constraint people_kind_check check (kind in ('board', 'councillor', 'alumni', 'advisory', 'confidential'));
 
 alter table people enable row level security;
 alter table pillars enable row level security;

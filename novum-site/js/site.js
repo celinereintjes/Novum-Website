@@ -297,6 +297,30 @@
     });
   }
 
+  // ---------- board page: advisory council and confidential person (each part hidden until someone is added) ----------
+  function renderSupport() {
+    if (!$('#support')) return;
+    // until supabase/advisory_confidential.sql has run, the live database has no email column and none of these people:
+    // show the built-in ones from js/data.js instead
+    const ready = data.demo || data.people.some(p => 'email' in p);
+    const source = ready ? data.people : ((window.NOVUM_DEMO || {}).people || []);
+    const of = kind => source.filter(p => p.kind === kind && p.active !== false);
+    const initials = n => n.split(/\s+/).map(w => w[0]).slice(0, 2).join('').toUpperCase();
+    const face = p => safeUrl(p.photo_url) ? `<img src="${safeUrl(p.photo_url)}" alt="" loading="lazy">` : `<span aria-hidden="true">${esc(initials(p.name))}</span>`;
+    const advisors = of('advisory'), confidential = of('confidential');
+    $('#advisors').innerHTML = advisors.map(p => `<li class="advisor reveal">
+      <div class="advisor-ph">${face(p)}</div>
+      <div><h3>${esc(p.name)}</h3>${p.role ? `<p class="role">${esc(p.role)}</p>` : ''}${p.bio ? `<p>${esc(p.bio)}</p>` : ''}</div></li>`).join('');
+    $('#confidentialPeople').innerHTML = confidential.map(p => `<div class="confidant">
+      <div class="advisor-ph">${face(p)}</div>
+      <div><h3>${esc(p.name)}</h3>${p.role ? `<p class="role">${esc(p.role)}</p>` : ''}${p.bio ? `<p>${esc(p.bio)}</p>` : ''}
+      ${/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(p.email || '') ? `<a class="btn confidant-mail" href="mailto:${esc(p.email)}">Email ${esc(p.name.split(' ')[0])} in confidence</a>` : ''}</div></div>`).join('');
+    $('#advisoryBlock').hidden = !advisors.length;
+    $('#confidentialBlock').hidden = !confidential.length;
+    $('#support').hidden = !advisors.length && !confidential.length;
+    $('#support').classList.toggle('support-single', !advisors.length || !confidential.length);
+  }
+
   // ---------- forms ----------
   function fillSelects() {
     document.querySelectorAll('[data-faculties]').forEach(s => s.insertAdjacentHTML('beforeend',
@@ -451,7 +475,7 @@
     renderPillarCards(); renderPillars();
     // drop an illustration frame if its image fails to load
     document.querySelectorAll('.pillar-art img').forEach(img => img.addEventListener('error', () => img.parentElement.remove()));
-    renderFinder(); setupFixit(); setupPoll(); renderCouncilList(); renderBoard(); fillSelects(); prefillFromIssue();
+    renderFinder(); setupFixit(); setupPoll(); renderCouncilList(); renderBoard(); renderSupport(); fillSelects(); prefillFromIssue();
     setupReveal();
   }
   init();

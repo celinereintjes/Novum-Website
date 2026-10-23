@@ -45,9 +45,9 @@ out.append(',\n'.join(
     for i, a in enumerate(d['achievements'])))
 out.append(') as a(pillar, council_id, title, description, sort) join pillars p on p.title = a.pillar;\n')
 
-out.append('insert into people (kind, name, role, bio, photo_url, council_id, study, hometown, study_year, why_novum, interests, sort) values')
+out.append('insert into people (kind, name, role, bio, photo_url, council_id, study, hometown, study_year, why_novum, interests, email, sort) values')
 out.append(',\n'.join(
-    f"  ({q(p['kind'])}, {q(p['name'])}, {q(p['role'])}, {q(p.get('bio', ''))}, {q(p.get('photo_url'))}, {q(p.get('council_id'))}, " + ', '.join(q(p.get(k, '')) for k in ('study', 'hometown', 'study_year', 'why_novum', 'interests')) + f", {p['sort']})"
+    f"  ({q(p['kind'])}, {q(p['name'])}, {q(p['role'])}, {q(p.get('bio', ''))}, {q(p.get('photo_url'))}, {q(p.get('council_id'))}, " + ', '.join(q(p.get(k, '')) for k in ('study', 'hometown', 'study_year', 'why_novum', 'interests', 'email')) + f", {p['sort']})"
     for p in d['people']) + ';\n')
 
 out += ['commit;', '']
